@@ -221,8 +221,6 @@ input[type="checkbox"] {
     font-weight: 600;
     transition: all 0.3s ease;
     position: relative;
-    line-height: 0px;
-    margin-top: 0px;
 }
 
 .signature a:hover {
