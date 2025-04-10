@@ -11,7 +11,7 @@
                 alarmMessage: "Time to open chests!",
                 alarmButton: "Dismiss",
                 nextResets: "Next resets in your local time:",
-                createdWithLove: "Created with love ❤️ by"
+                createdWithLove: "Made with love ❤️ by"
             },
             es: {
                 title: "Temporizador de farmeo Once Human",
@@ -22,7 +22,7 @@
                 alarmMessage: "¡Es hora de abrir los cofres!",
                 alarmButton: "Aceptar",
                 nextResets: "Próximos resets en tu hora local:",
-                createdWithLove: "Creado con amor ❤️ por"
+                createdWithLove: "Hecho con amor ❤️ por"
             }
         };
 
