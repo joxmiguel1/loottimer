@@ -1,12 +1,12 @@
 # Once Human Loot Timer
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-![Last Commit](https://img.shields.io/github/last-commit/TU_USUARIO/NOMBRE_DEL_REPOSITORIO)
-![GitHub Stars](https://img.shields.io/github/stars/TU_USUARIO/NOMBRE_DEL_REPOSITORIO?style=social)
+![Last Commit](https://img.shields.io/github/last-commit/joxmiguel1)
+![GitHub Stars](https://img.shields.io/github/stars/joxmiguel1/loottimer?style=social)
 
 **¿Cansado de perderte los reinicios de loot en Once Human?** ¡Este temporizador web te ayuda a mantenerte al tanto! ⏰
 
-Este proyecto es una herramienta sencilla y fácil de usar diseñada para jugadores de Once Human. Te proporciona la hora local, la hora del servidor del juego (EST), una cuenta regresiva para el próximo reinicio de loot y la opción de configurar una alarma para no perderte ni uno.
+Este proyecto es una herramienta sencilla y fácil de usar diseñada para jugadores de Once Human. Te proporciona la hora local, la hora del servidor del juego (EST), una cuenta regresiva para el próximo reinicio de loot y la opción de configurar una alarma para no perderte nada!.
 
 ## ✨ Características Principales
 
@@ -19,9 +19,10 @@ Este proyecto es una herramienta sencilla y fácil de usar diseñada para jugado
 
 ## 🚀 Cómo Empezar
 
-1.  **Accede a la página:** Simplemente abre este enlace en tu navegador web: [**ENLACE A TU PÁGINA DESPLEGADA (e.g., GitHub Pages, Vercel, Netlify)**](AQUÍ_DEBE_IR_EL_ENLACE_DE_TU_PÁGINA)
+1.  **Accede a la página:** Simplemente abre este enlace en tu navegador web: ([https://joxmiguel1.github.io/loottimer/](https://joxmiguel1.github.io/loottimer/))
 2.  **¡Listo!** El temporizador comenzará a mostrar la información automáticamente.
 
-## 🖼️ Captura de Pantalla (Opcional)
+## 🖼️ Captura de Pantalla 
 
-Puedes incluir una captura de pantalla aquí para dar a los usuarios una vista previa de la herramienta.
+![image](https://github.com/user-attachments/assets/bb456062-608e-490c-b72a-5f35d90caee8)
+
