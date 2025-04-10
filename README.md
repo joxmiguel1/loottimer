@@ -1,4 +1,34 @@
-# Once Human Loot Timer
+# Once Human Loot Timer!
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Last Commit](https://img.shields.io/github/last-commit/joxmiguel1)
+![GitHub Stars](https://img.shields.io/github/stars/joxmiguel1/loottimer?style=social)
+
+**Tired of missing loot resets in Once Human?** This web timer helps you stay on top of it! ⏰
+
+This project is a simple and easy-to-use tool designed for Once Human players. It provides you with your local time, the game server time (EST), a countdown to the next loot reset, and the option to set an alarm so you don't miss anything!
+
+## ✨ Main Features
+
+* **Time Display:** Shows your local time and the game server time (EST) in real-time.
+* **Reset Timer:** Counts down the remaining time until the next loot reset.
+* **Reset Alarm:** Set an alarm to notify you when the next reset is near.
+* **Reset Schedules:** Displays upcoming reset times in your local time.
+* **Language Selection:** Interface available in English and Spanish.
+* **Clean and Intuitive Design:** Easy to understand and use.
+
+## 🚀 How to Get Started
+
+1.  **Access the page:** Simply open this link in your web browser: ([https://joxmiguel1.github.io/loottimer/](https://joxmiguel1.github.io/loottimer/))
+2.  **Ready!** The timer will start displaying the information automatically.
+
+## 🖼️ Screenshot
+
+![image](https://github.com/user-attachments/assets/707df1ba-c837-47c7-8e14-db184229c610)
+
+
+
+# Temporizador de Farmeo para Once Human!
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Last Commit](https://img.shields.io/github/last-commit/joxmiguel1)
