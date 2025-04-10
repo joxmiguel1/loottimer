@@ -119,20 +119,21 @@
         }
 
         function calculateNextReset() {
-            const now = new Date();
-            const estTime = new Date(now.toLocaleString("en-US", {timeZone: "America/New_York"}));
-            const currentEstHour = estTime.getHours();
+           const now = new Date();
+           const estTime = new Date(now.toLocaleString("en-US", {timeZone: "America/New_York"}));
+           const currentEstHour = estTime.getHours();
             
-            let nextResetHour = Math.ceil(currentEstHour / 4) * 4;
-            if (nextResetHour >= 24) nextResetHour = 0;
+           const currentIntervalStartHour = Math.floor(currentEstHour / 4) * 4;
+           let nextResetHour = currentIntervalStartHour + 4;
+           let nextResetDay = new Date(estTime);
             
-            let nextReset = new Date(estTime);
-            nextReset.setHours(nextResetHour, 0, 0, 0);
+           if (nextResetHour >= 24) {
+                nextResetHour = 0;
+                nextResetDay.setDate(nextResetDay.getDate() + 1);
+           }
             
-            if (nextReset <= estTime) {
-                nextReset.setDate(nextReset.getDate() + 1);
-            }
-            return nextReset;
+           nextResetDay.setHours(nextResetHour, 0, 0, 0);
+           return nextResetDay;
         }
 
         function updateTimerDisplay(timeUntilResetMs) {
