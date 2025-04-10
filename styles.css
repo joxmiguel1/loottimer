@@ -198,13 +198,21 @@ input[type="checkbox"] {
 }
 
 .signature {
-    text-align: center;
-    margin: 20px auto;
-    color: rgba(255, 255, 255, 0.4);
-    font-size: 14px;
-    width: 100%;
-    max-width: 500px;
-    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    color: #8f8c8c;
+    font-size: 12px;
+}
+
+.signature a[data-i18n="coffeeLink"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.2em;
+    margin-left: 3px;
 }
 
 .signature a {
@@ -213,6 +221,8 @@ input[type="checkbox"] {
     font-weight: 600;
     transition: all 0.3s ease;
     position: relative;
+    line-height: 0px;
+    margin-top: 0px;
 }
 
 .signature a:hover {
