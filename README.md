@@ -23,9 +23,7 @@ This project is a simple and easy-to-use tool designed for Once Human players. I
 2.  **Ready!** The timer will start displaying the information automatically.
 
 ## 🖼️ Screenshot
-
-![image](https://github.com/user-attachments/assets/707df1ba-c837-47c7-8e14-db184229c610)
-
+![image](https://github.com/user-attachments/assets/dd6a18dd-1439-4309-9d34-684633b4cfb7)
 
 
 # Temporizador de Farmeo para Once Human!
@@ -54,5 +52,6 @@ Este proyecto es una herramienta sencilla y fácil de usar diseñada para jugado
 
 ## 🖼️ Captura de Pantalla 
 
-![image](https://github.com/user-attachments/assets/bb456062-608e-490c-b72a-5f35d90caee8)
+![image](https://github.com/user-attachments/assets/eefc5902-6d90-4c4f-816f-4671f0b81d02)
+
 
