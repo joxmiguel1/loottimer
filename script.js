@@ -1,4 +1,4 @@
-       // ====================
+// ====================
         // Configuración de idiomas
         // ====================
         const translations = {
@@ -88,7 +88,7 @@
         // ====================
         function updateTimes() {
             const now = new Date();
-            
+
             // Mostrar hora local
             elements.localTime.textContent = now.toLocaleTimeString(lang, {
                 hour: '2-digit',
@@ -96,22 +96,30 @@
                 second: '2-digit',
                 hour12: false
             });
-            
+
+            // Calculate current EST time accurately
+            const nowUtc = new Date(now.toUTCString());
+            const utcTimestamp = nowUtc.getTime();
+            // Approximate EST offset in milliseconds (EST is UTC-4)
+            const estOffsetMs = -4 * 60 * 60 * 1000;
+            const nowEstTimestamp = utcTimestamp + estOffsetMs;
+            const nowEst = new Date(nowEstTimestamp);
+
             // Mostrar hora EST (servidor)
-            elements.estTime.textContent = now.toLocaleTimeString(lang, {
-                timeZone: "America/New_York",
+            elements.estTime.textContent = nowEst.toLocaleTimeString(lang, { // Use nowEst for displaying EST time
                 hour: '2-digit',
                 minute: '2-digit',
                 second: '2-digit',
-                hour12: false
+                hour12: false,
+                 timeZone: "America/New_York" // Explicitly set timezone for display consistency
             });
-            
+
+
             // Calcular tiempo hasta el próximo reset
-            const estTime = new Date(now.toLocaleString("en-US", {timeZone: "America/New_York"}));
-            const timeUntilResetMs = nextResetTime - estTime;
-            
+            const timeUntilResetMs = nextResetTime.getTime() - nowEstTimestamp; // Subtract the current precise EST timestamp from the next reset's precise EST timestamp.
+
             if (timeUntilResetMs <= 0) {
-                nextResetTime = calculateNextReset();
+                nextResetTime = calculateNextReset(); // calculateNextReset now returns a UTC-based EST moment.
                 updateNextResetTimes();
                 if (elements.alarmCheckbox.checked) {
                     triggerAlarm();
@@ -124,20 +132,33 @@
 
         function calculateNextReset() {
            const now = new Date();
-           const estTime = new Date(now.toLocaleString("en-US", {timeZone: "America/New_York"}));
-           const currentEstHour = estTime.getHours();
-            
-           const currentIntervalStartHour = Math.floor(currentEstHour / 4) * 4;
-           let nextResetHour = currentIntervalStartHour + 4;
-           let nextResetDay = new Date(estTime);
-            
-           if (nextResetHour >= 24) {
-                nextResetHour = 0;
-                nextResetDay.setDate(nextResetDay.getDate() + 1);
+           const nowUtc = new Date(now.toUTCString()); // Get current time in UTC
+           const utcTimestamp = nowUtc.getTime();
+
+           // Approximate EST offset in milliseconds (EST is UTC-4)
+           const estOffsetMs = -4 * 60 * 60 * 1000;
+
+           // Calculate current timestamp in EST
+           const nowEstTimestamp = utcTimestamp + estOffsetMs;
+           const nowEst = new Date(nowEstTimestamp);
+
+           // Get current EST hour
+           const currentEstHours = nowEst.getUTCHours(); // Use getUTCHours with a UTC-based Date object representing EST
+
+           // Calculate the next EST reset hour (0, 4, 8, 12, 16, 20)
+           const currentIntervalStartHourEst = Math.floor(currentEstHours / 4) * 4;
+           let nextResetHourEst = currentIntervalStartHourEst + 4;
+
+           // Create a Date object for the next reset in EST, starting with the current day in EST
+           let nextResetEst = new Date(nowEst);
+           nextResetEst.setUTCHours(nextResetHourEst, 0, 0, 0); // Set the hours using setUTCHours
+
+            // If the calculated next reset time is in the past relative to the current EST time, add 4 hours (the reset cycle)
+           if (nextResetEst.getTime() <= nowEstTimestamp) {
+               nextResetEst = new Date(nextResetEst.getTime() + 4 * 60 * 60 * 1000);
            }
-            
-           nextResetDay.setHours(nextResetHour, 0, 0, 0);
-           return nextResetDay;
+
+           return nextResetEst; // Return a UTC-based Date object representing the next reset time in EST.
         }
 
         function updateTimerDisplay(timeUntilResetMs) {
@@ -145,8 +166,8 @@
             const hours = Math.floor(totalSeconds / 3600);
             const minutes = Math.floor((totalSeconds % 3600) / 60);
             const seconds = totalSeconds % 60;
-            
-            elements.resetTimer.textContent = 
+
+            elements.resetTimer.textContent =
                 `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
         }
 
@@ -161,7 +182,7 @@
             const now = new Date();
             const estTime = new Date(now.toLocaleString("en-US", {timeZone: "America/New_York"}));
             const timeUntilReset = nextResetTime - estTime;
-            
+
             if (elements.alarmCheckbox.checked && timeUntilReset <= 1000 && timeUntilReset > 0 && !alarmTriggered) {
                 triggerAlarm();
             }
@@ -176,23 +197,32 @@
         function updateNextResetTimes() {
             const resetCycle = 4 * 60 * 60 * 1000;
             let nextReset = calculateNextReset();
-            let nextResets = [];
-            
-            for (let i = 0; i < 4; i++) {
-                const resetTime = new Date(nextReset.getTime() + (i * resetCycle));
-                nextResets.push(resetTime);
+            const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            const nowLocal = new Date();
+        
+            let upcomingResets = [];
+        
+            for (let i = 0; i < 8; i++) { // calcula más de 4 por si hay que filtrar
+                const resetTimeEST = new Date(nextReset.getTime() + i * resetCycle);
+                const resetTimeLocalStr = resetTimeEST.toLocaleString("en-US", { timeZone: userTimeZone });
+                const resetTimeLocal = new Date(resetTimeLocalStr);
+        
+                if (resetTimeLocal > nowLocal) {
+                    upcomingResets.push(resetTimeLocal);
+                }
+        
+                if (upcomingResets.length === 4) break;
             }
-            
-            elements.nextResets.innerHTML = nextResets.map((time, index) => {
-                const localTime = new Date(time);
+        
+            elements.nextResets.innerHTML = upcomingResets.map((time, index) => {
                 return `
                     <div>
-                        ${index + 1}. ${localTime.toLocaleTimeString(lang, { 
+                        ${index + 1}. ${time.toLocaleTimeString(lang, { 
                             hour: '2-digit', 
                             minute: '2-digit',
                             hour12: false
                         })} 
-                        (${localTime.toLocaleDateString(lang, {
+                        (${time.toLocaleDateString(lang, {
                             day: 'numeric',
                             month: 'numeric'
                         })})
@@ -200,6 +230,8 @@
                 `;
             }).join('');
         }
+        
+
 
         // ====================
         // Event Listeners
@@ -223,7 +255,7 @@
             // Configurar intervalos
             setInterval(updateTimes, 1000);
             setInterval(checkAlarm, 1000);
-            
+
             // Inicializar valores
             updateTextContent(lang);
             updateNextResetTimes();
