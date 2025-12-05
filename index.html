@@ -40,6 +40,16 @@
                 <a class="test-alarm-link" id="test-alarm" data-i18n="testAlarm">Test alarm</a>
             </div>
 
+            <div class="alarm-lead">
+                <label for="alarm-lead" data-i18n="alarmLeadLabel">Reminder time before reset</label>
+                <select id="alarm-lead">
+                    <option value="0" data-i18n="leadAtReset">At reset</option>
+                    <option value="1" data-i18n="lead1Minute">1 minute before</option>
+                    <option value="5" data-i18n="lead5Minutes">5 minutes before</option>
+                    <option value="10" data-i18n="lead10Minutes">10 minutes before</option>
+                </select>
+            </div>
+
             <div class="alarm-sound" id="alarm-sound">
                 <span data-i18n="alarmMessage">Time to open chests!</span> <br>
                 <button id="stop-alarm" data-i18n="alarmButton">Dismiss</button>
