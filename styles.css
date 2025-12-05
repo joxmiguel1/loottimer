@@ -84,6 +84,36 @@ h1 {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.alarm-lead {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+
+.alarm-lead label {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.alarm-lead select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+}
+
+.alarm-lead select:focus {
+    border-color: #00f2fe;
+    box-shadow: 0 0 0 2px rgba(0, 242, 254, 0.15);
+}
+
 .alarm-sound {
     display: none;
     margin-top: 15px;
